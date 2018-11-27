@@ -14,7 +14,6 @@ class User
     property :id, Serial
     property :email, String
     property :password, String
-    property :created_at, DateTime
 
     def login(password)
     	return self.password == password

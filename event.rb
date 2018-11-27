@@ -1,0 +1,24 @@
+require 'data_mapper' 
+
+if ENV['DATABASE_URL']
+  DataMapper::setup(:default, ENV['DATABASE_URL'] || 'postgres://localhost/mydb')
+else
+  DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/event.db")
+end
+
+class Event 
+    include DataMapper::Resource
+    property :id, Serial
+    property :name, String
+    property :description, String
+    property :date, String #format 'month/day/year' ex:'november/27/2018'
+    property :price, Double #price of each ticket 
+    property :quantity, Integer #how many tickets they are purchasing 
+
+    #need to add an image of an event 
+
+end
+
+DataMapper.finalize
+User.auto_upgrade!
+
