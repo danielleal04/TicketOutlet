@@ -15,6 +15,11 @@ class User
     property :email, String
     property :password, String
 
+    #######
+
+    property :role_id, Integer :default => 0 
+    
+
     def login(password)
     	return self.password == password
     end
