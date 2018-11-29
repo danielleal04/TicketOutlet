@@ -12,7 +12,7 @@ require_relative "authentication.rb"
 # if they are not signed in, current_user will be nil
 
 get "/" do
-	erb :index 
+	erb :index
 end
 
 get "/dashboard" do
@@ -20,14 +20,19 @@ get "/dashboard" do
 	erb :dashboard
 end
 
-get "login" do 
+get "login" do
 
 end
 
-get "logout" do 
+get "logout" do
 
 end
 
-get "sign_up" do 
+get "sign_up" do
 
-end 
+end
+
+get "/contact" do
+erb :contact
+
+end
