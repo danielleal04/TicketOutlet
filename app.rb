@@ -36,3 +36,23 @@ get "/contact" do
 erb :contact
 
 end
+
+get "/forgotpassword" do
+erb :forgotpass
+
+end
+
+get "/newpassword" do
+erb :newpass
+
+end
+
+get "/events" do
+erb :events
+
+end
+
+get "/profile" do
+erb :profile
+
+end

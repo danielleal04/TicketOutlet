@@ -17,8 +17,8 @@ class User
 
     #######
 
-    property :role_id, Integer :default => 0 
-    
+    ##property :role_id, Integer :default => 0 
+
 
     def login(password)
     	return self.password == password
@@ -31,4 +31,3 @@ DataMapper.finalize
 
 # automatically create the post table
 User.auto_upgrade!
-
