@@ -1,6 +1,9 @@
 
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-  <font size="+2"><a class="navbar-brand" href="/">Ticket Outlet</a></font>
+
+
+  <a href="http://localhost:4567/home"><img src="/ticketoutletlogo.png/" width = "100" height = "70" /></a>
+
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -8,7 +11,8 @@
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/home">&#160;&#160;&#160;&#160;&#160;&#160;&#160; Home <span class="sr-only">(current)</span></a>
+        <!-- the &#160; is to add spaces in html -->
       </li>
 
       <% if current_user %>
@@ -22,6 +26,9 @@
           <a class="nav-link" href="/contact">Contact</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="/logout">Logout</a>
         </li>
       <% else %>
@@ -33,6 +40,9 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/contact">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
         </li>
       <% end %>
 

@@ -1,0 +1,40 @@
+.fade-in {
+  animation: fadeIn 2s;
+}
+.fade-in2 {
+  animation: fadeIn 3s;
+}
+.fade-in3 {
+  animation: fadeIn 4s;
+}
+.fade-in4 {
+  animation: fadeIn 5s;
+}
+.fade-in5 {
+  animation: fadeIn 6s;
+}
+.fade-in6 {
+  animation: fadeIn 7s;
+}
+.fade-in7 {
+  animation: fadeIn 8s;
+}
+.fade-in8 {
+  animation: fadeIn 9s;
+}
+.fade-in9 {
+  animation: fadeIn 10s;
+}
+.fade-in10 {
+  animation: fadeIn 11s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

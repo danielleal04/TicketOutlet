@@ -11,9 +11,16 @@ require_relative "authentication.rb"
 # if the user is signed in, current_user will refer to the signed in user object.
 # if they are not signed in, current_user will be nil
 
+
+
 get "/" do
-	erb :index
+		erb :splashpage
 end
+
+get "/home" do
+		erb :index
+end
+
 
 get "/dashboard" do
 	authenticate!
@@ -37,6 +44,11 @@ erb :contact
 
 end
 
+get "/about" do
+erb :about
+
+end
+
 get "/forgotpassword" do
 erb :forgotpass
 
@@ -54,5 +66,10 @@ end
 
 get "/profile" do
 erb :profile
+
+end
+
+get '/splashpage' do
+erb :splashpage
 
 end
