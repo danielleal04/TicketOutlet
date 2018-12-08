@@ -14,7 +14,7 @@ require_relative "authentication.rb"
 
 
 get "/" do
-		erb :splashpage
+		erb :splashpage, :layout => nil
 end
 
 get "/home" do
