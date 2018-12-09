@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'sinatra/flash'
 require_relative "user.rb"
 
 enable :sessions
@@ -6,9 +7,17 @@ enable :sessions
 set :session_secret, 'super secret'
 
 get "/login" do
+
+	InvalidLogin = false 
 	erb :"authentication/login"
 end
 
+get "/login/fail" do 
+
+	InvalidLogin = true 
+	erb :"authentication/login" 
+
+end 
 
 post "/process_login" do
 	email = params[:email]
@@ -18,9 +27,12 @@ post "/process_login" do
 
 	if(user && user.login(password))
 		session[:user_id] = user.id
+
+		flash[:success]= "Successfully Logged In"
 		redirect "/home"
 	else
-		erb :"authentication/invalid_login"
+		flash[:error]= "Invalid Email or Password"
+		redirect "/login/fail"
 	end
 end
 
@@ -46,6 +58,9 @@ post "/register" do
 	session[:user_id] = u.id
 
 	erb :"authentication/successful_signup"
+
+	flash[:success]= "Account Successfully Created"
+	redirect"/home"  
 
 end
 

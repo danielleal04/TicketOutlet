@@ -18,6 +18,7 @@
 
 		<div class="container">
 			<% if flash[:success] %>
+			<br><br><br>
 				<div class="alert alert-success alert-dismissible fade show" role="alert">
 				  <%= flash[:success] %>
 				  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -27,6 +28,7 @@
 			<% end %>
 
 			<% if flash[:error] %>
+			<br><br><br>
 				<div class="alert alert-danger alert-dismissible fade show" role="alert">
 				  <%= flash[:error] %>
 				  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
