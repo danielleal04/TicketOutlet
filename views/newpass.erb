@@ -1,6 +1,10 @@
+<%if InvalidPasswords == true %>
+<br> 
+<%else %>
 <br>
 <br>
 <br>
+<%end%> 
 <div class="container">
 <h2> Forgot Password Form </h2>
 <br>
@@ -8,14 +12,14 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputEmail4">Password</label>
-      <input type="password" name ="passwordconfirm" class="form-control" id="inputPassword4" placeholder="Password">
+      <input type="password" name ="password" class="form-control" id="inputPassword4" placeholder="Password">
     </div>
     </div>
     <br>
     <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputPassword4">Confirm Password</label>
-      <input type="password" name="password" class="form-control" id="inputPassword4" placeholder="Password">
+      <input type="password" name="confirmpassword" class="form-control" id="inputPassword4" placeholder="Password">
     </div>
   </div>
 	<br>

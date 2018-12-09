@@ -1,10 +1,20 @@
 require 'sinatra'
 require 'sinatra/flash'
-require_relative "user.rb"
+require_relative 'user.rb'
 
 enable :sessions
 
 set :session_secret, 'super secret'
+
+#######
+if User.all(admin: true).count == 0
+    u = User.new
+    u.email = "admin@admin.com"
+    u.password = "admin"
+    u.admin = true
+    u.save
+end
+#######
 
 get "/login" do
 
@@ -74,7 +84,8 @@ end
 # Global Variable to change password 
 # prototype 
 
-$temp_email = "nothing" 
+$temp_email = "" 
+$temp_pass = 0
 
 ######
 
@@ -82,13 +93,14 @@ post "/newpassword" do
 	
 	input_email = params[:email] 
 
-	@user = User.all(email: input_email)
+	user = User.first(email: input_email.downcase)
 
-	if @user.length != 0 
+	if user
 
 		$temp_email = input_email
 
-		erb :newpass 
+		$temp_pass = 1
+		redirect "newpasswordform"
 
 	else 
 		flash[:error]= "Invalid Email"
@@ -97,31 +109,77 @@ post "/newpassword" do
 
 end
 
-post "/updatepassword" do 
+get "/newpasswordform" do
 
-	#make change 
+	if $temp_pass == 1
 
-	new_password = params[:passwordconfirm]
+		InvalidPasswords = false 
+		$temp_pass = 0 
+		erb :newpass 
 
-	@user = User.all(email: $temp_email)
+	else 
 
-	@user.each do |u|
-		u.password = new_password
-		u.save 
+		redirect "/forgotpassword"
+
 	end 
 
-	@user.save 
+end 
 
-	flash[:success]= "Password Changed" 
-	redirect"/home"  
+get "/newpasswordform/fail" do
+
+	if $temp_pass == 1
+
+		InvalidPasswords = true 
+		$temp_pass = 0 
+		erb :newpass 
+
+	else 
+
+		redirect "/forgotpassword"
+
+	end 
+
+end 
+
+post "/updatepassword" do 
+
+	#check if both passworf and confirm password match 
+	p1 = params[:password]
+	p2 = params[:confirmpassword]
+
+	if p1 != p2 
+
+		flash[:error]= "Passwords Must Both Match"
+		$temp_pass = 1 
+		redirect "/newpasswordform/fail"
+
+	else 
+
+		#make change
+		new_password = params[:confirmpassword]
+
+		user = User.first(email: $temp_email.downcase)
+
+		user.password = new_password
+		user.save 
+
+		$temp_email = ""  # clears 
+
+		flash[:success]= "Password Changed" 
+		redirect"/home"  
+
+	end 
 
 end 
 
 get "/profile" do
 	
+	authenticate! 
+
 	erb :profile
 
 end
+
 
 #This method will return the user object of the currently signed in user
 #Returns nil if not signed in

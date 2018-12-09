@@ -1,9 +1,7 @@
 require "sinatra"
 require 'sinatra/flash'
-require_relative "authentication.rb"
-require_relative "event.rb"
-require_relative "user.rb"
-
+require_relative 'authentication.rb'
+#require_relative 'manage.rb'
 
 #the following urls are included in authentication.rb
 # GET /login
@@ -48,9 +46,3 @@ get '/splashpage' do
 	erb :splashpage
 
 end
-
-
-
-
-
-
