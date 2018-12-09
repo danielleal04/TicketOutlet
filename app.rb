@@ -27,17 +27,6 @@ get "/dashboard" do
 	erb :dashboard
 end
 
-get "login" do
-
-end
-
-get "logout" do
-
-end
-
-get "sign_up" do
-
-end
 
 get "/contact" do
 erb :contact
