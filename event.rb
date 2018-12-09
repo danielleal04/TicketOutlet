@@ -19,6 +19,13 @@ class Event
 
 end
 
+get "/events" do
+
+    erb :events
+
+end
+
+
 DataMapper.finalize
 User.auto_upgrade!
 

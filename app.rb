@@ -21,44 +21,33 @@ get "/home" do
 		erb :index
 end
 
-
 get "/dashboard" do
+
 	authenticate!
 	erb :dashboard
+
 end
 
-
 get "/contact" do
-erb :contact
+
+	erb :contact
 
 end
 
 get "/about" do
-erb :about
 
-end
-
-get "/forgotpassword" do
-erb :forgotpass
-
-end
-
-get "/newpassword" do
-erb :newpass
-
-end
-
-get "/events" do
-erb :events
-
-end
-
-get "/profile" do
-erb :profile
+	erb :about
 
 end
 
 get '/splashpage' do
-erb :splashpage
+
+	erb :splashpage
 
 end
+
+
+
+
+
+

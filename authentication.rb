@@ -57,10 +57,69 @@ post "/register" do
 
 	session[:user_id] = u.id
 
-	erb :"authentication/successful_signup"
-
 	flash[:success]= "Account Successfully Created"
 	redirect"/home"  
+
+end
+
+
+get "/forgotpassword" do
+
+	erb :forgotpass
+
+end
+
+######
+
+# Global Variable to change password 
+# prototype 
+
+$temp_email = "nothing" 
+
+######
+
+post "/newpassword" do
+	
+	input_email = params[:email] 
+
+	@user = User.all(email: input_email)
+
+	if @user.length != 0 
+
+		$temp_email = input_email
+
+		erb :newpass 
+
+	else 
+		flash[:error]= "Invalid Email"
+		redirect "/forgotpassword"
+	end 
+
+end
+
+post "/updatepassword" do 
+
+	#make change 
+
+	new_password = params[:passwordconfirm]
+
+	@user = User.all(email: $temp_email)
+
+	@user.each do |u|
+		u.password = new_password
+		u.save 
+	end 
+
+	@user.save 
+
+	flash[:success]= "Password Changed" 
+	redirect"/home"  
+
+end 
+
+get "/profile" do
+	
+	erb :profile
 
 end
 
