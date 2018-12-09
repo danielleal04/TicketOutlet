@@ -12,7 +12,7 @@ class Event
     property :name, String #name of event 
     property :description, String # short description of event 
     property :date, String #format 'month/day/year' ex:'november/27/2018'
-    property :price, Double #price of each ticket 
+    #property :price, Double #price of each ticket 
     property :quantity, Integer #how many tickets they are purchasing 
     property :tickets, Integer #how many available tickets 
     #need to add an image of an event     
@@ -25,7 +25,14 @@ get "/events" do
 
 end
 
+get "/create_event" do 
+
+    authenticate!
+    administrate! 
+
+end 
+
 
 DataMapper.finalize
-User.auto_upgrade!
+Event.auto_upgrade!
 

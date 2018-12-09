@@ -140,3 +140,12 @@ def authenticate!
 		redirect "/login"
 	end
 end
+
+#if the user is not admin, will redirect to home page 
+def administrate!
+	if current_user.admin == false 
+		redirect "/home"
+	end
+end
+
+
