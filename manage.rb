@@ -1,6 +1,6 @@
 require 'sinatra'
 require 'sinatra/flash'
-require_relative 'event.rb'
+require_relative 'data.rb'
 require_relative 'authentication.rb'
 
 

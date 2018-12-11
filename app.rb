@@ -1,7 +1,7 @@
 require "sinatra"
 require 'sinatra/flash'
 require_relative 'authentication.rb'
-#require_relative 'manage.rb'
+require_relative 'manage.rb'
 
 #the following urls are included in authentication.rb
 # GET /login
@@ -20,13 +20,6 @@ end
 
 get "/home" do
 		erb :index
-end
-
-get "/dashboard" do
-
-	authenticate!
-	erb :dashboard
-
 end
 
 get "/contact" do

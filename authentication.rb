@@ -1,6 +1,6 @@
 require 'sinatra'
 require 'sinatra/flash'
-require_relative 'user.rb'
+require_relative 'data.rb'
 
 enable :sessions
 
