@@ -7,87 +7,20 @@
 <br>
 <div class="card-columns">
 
-  <div class="card h-100">
-    <img class="card-img-top" src="/drake.jpg/" alt="Card image" height="200" width="200">
-    <div class="card-body">
-      <h4 class="card-title">Drake</h4>
-      <p class="card-text">Coming to Pharr Event Center.</p>
-      <a href="#" class="btn btn-primary">Order Tickets!</a>
-    </div>
-  </div>
+  <% @event.each do |event| %>
+      
+        <div class="card h-100">
+            <img class="card-img-top" src= "<%= event.image_name%>" alt="Card image" height="200" width="200">
+            <div class="card-body">
+              <h4 class="card-title"> <%= event.event_name%> </h4>
+              <p class="card-text"> <%= event.event_description%> </p>
+              <p class="card-text" > <%= event.event_date%> </p>
+              <p class="card-text"> $<%= event.event_price%> </p>
+              <a href="/purchase?event=<%=(event.id).to_i%>" class="btn btn-primary">Purchase</a>
+            </div><!--Change 1 to <%event.id%>-->      
+          </div>
 
-  <div class="card h-100">
-    <img class="card-img-top" src="/mexicanmusic.jpg/" alt="Card image" height="200" width="200">
-    <div class="card-body">
-      <h4 class="card-title">Vox De Mando</h4>
-      <p class="card-text">Coming to Aragon Music Hall.</p>
-      <a href="#" class="btn btn-primary">Order Tickets!</a>
-    </div>
-  </div>
-
-  <div class="card h-100">
-    <img class="card-img-top" src="/jbalvin.jpg/" alt="Card image" height="200" width="200">
-    <div class="card-body">
-      <h4 class="card-title">JBalvin</h4>
-      <p class="card-text">Coming to State Farm Arena.</p>
-      <a href="#" class="btn btn-primary">Order Tickets!</a>
-    </div>
-  </div>
-
-  <div class="card h-100">
-    <img class="card-img-top" src="/duelo.png/" alt="Card image" height="200" width="200">
-    <div class="card-body">
-      <h4 class="card-title">Duelo</h4>
-      <p class="card-text">Coming to Pharr Event Center.</p>
-      <a href="#" class="btn btn-primary">Order Tickets!</a>
-    </div>
-  </div>
-
-  <div class="card h-100">
-    <img class="card-img-top" src="/tyga.jpeg/" alt="Card image" height="200" width="200">
-    <div class="card-body">
-      <h4 class="card-title">Tyga</h4>
-      <p class="card-text">Coming to Aragon Music Hall.</p>
-      <a href="#" class="btn btn-primary">Order Tickets!</a>
-    </div>
-  </div>
-
-  <div class="card h-100">
-    <img class="card-img-top" src="/kanyewest.jpg/" alt="Card image" height="200" width="200">
-    <div class="card-body">
-      <h4 class="card-title">Kanye West</h4>
-      <p class="card-text">Coming to State Farm Arena.</p>
-      <a href="#" class="btn btn-primary">Order Tickets!</a>
-    </div>
-  </div>
-
-  <div class="card h-100">
-    <img class="card-img-top" src="/postmalone.jpg/" alt="Card image" height="200" width="200">
-    <div class="card-body">
-      <h4 class="card-title">Post Malone</h4>
-      <p class="card-text">Coming to State Farm Arena.</p>
-      <a href="#" class="btn btn-primary">Order Tickets!</a>
-    </div>
-  </div>
-
-  <div class="card h-100">
-    <img class="card-img-top" src="/arianagrande.jpg/" alt="Card image" height="200" width="200">
-    <div class="card-body">
-      <h4 class="card-title">Ariana Grande</h4>
-      <p class="card-text">Coming to Bert Ogden Arena.</p>
-      <a href="#" class="btn btn-primary">Order Tickets!</a>
-    </div>
-  </div>
-
-  <div class="card h-100">
-    <img class="card-img-top" src="/wizkhalifa.jpg/" alt="Card image" height="200" width="200">
-    <div class="card-body">
-      <h4 class="card-title">Wiz Khalifa</h4>
-      <p class="card-text">Coming to Pharr Event Center.</p>
-      <a href="#" class="btn btn-primary">Order Tickets!</a>
-    </div>
-  </div>
-
+  <% end %>
 
   </div> <!--Card Deck-->
   </div> <!--Container-->

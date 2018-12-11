@@ -3,7 +3,7 @@ require 'data_mapper' # metagem, requires common plugins too.
 # need install dm-sqlite-adapter
 # if on heroku, use Postgres database
 # if not use sqlite3 database I gave you
-if ENV['DATABASE_URL']
+if ENV['DATABASE_URL'] 
   DataMapper::setup(:default, ENV['DATABASE_URL'] || 'postgres://localhost/mydb')
 else
   DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/user.db")
@@ -31,14 +31,16 @@ end
 class Event 
     include DataMapper::Resource
     property :id, Serial
-    property :name, String #name of event 
-    property :description, String # short description of event 
-    property :date, String #format 'month/day/year' ex:'november/27/2018'
-    property :price, Float #price of each ticket 
-    property :quantity, Integer #how many tickets they are purchasing 
-    property :tickets, Integer #how many available tickets 
-    #need to add an image of an event     
-
+    property :event_name, String #name of event 
+    property :event_description, String # short description of event 
+    property :event_date, String #format 'month/day/year' ex:'november/27/2018'
+    property :event_price, Float #price of each ticket 
+    property :tickets_purchasing, Integer #how many tickets they are purchasing 
+    property :avai_tickets, Integer #how many available tickets
+    property :image_name, String # name of image to display  
+    property :event_link, String # link to purchase event 
+    #need to add an image of an event 
+    #images availabel in public file    
 end
 
 #Cart Table - Future Features 

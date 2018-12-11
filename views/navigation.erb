@@ -16,6 +16,12 @@
       </li>
 
       <% if current_user %>
+            <% if current_user.admin %> 
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/add_event">Create Event</a>
+                    </li>
+            <% end %> 
         <li class="nav-item">
           <a class="nav-link" href="/events">Events</a>
         </li>

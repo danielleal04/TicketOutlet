@@ -19,10 +19,27 @@ get "/" do
 end
 
 get "/home" do
-		erb :index
+
+	#add event code here 
+ ###
+ ###
+ ###
+ ###
+ ###
+ ###
+ ###
+ ###
+ ###
+ ###
+ ###
+ ### and to index 
+
+	erb :index
 end
 
 get "/contact" do
+
+	authenticate! 
 
 	erb :contact
 
