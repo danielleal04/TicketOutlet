@@ -93,6 +93,7 @@ end
 get '/cart' do 
 
 	authenticate! 
+
 	current = (current_user.id)
 	@cart = Cart.all(user_id: current)
 
@@ -105,7 +106,7 @@ end
 
 post '/charge' do
   # Amount in cents
-  @amount = add_all_cart(true)
+  @amount = (add_all_cart(false) * 100).round 
 
   customer = Stripe::Customer.create(
     :email => 'customer@example.com',
@@ -119,11 +120,8 @@ post '/charge' do
     :customer    => customer.id
   )
 
-
+  clear_events()
   erb :charge #successful 
-
-  # deduct tickets purchased with total tickets available 
-  # empty cart 
 
 end
 
@@ -146,6 +144,23 @@ def add_all_cart (display)
 		return @display_total 
 	else 
 		return @total
+	end 
+
+end 
+
+def clear_events ()
+
+	current = (current_user.id)
+	@cart = Cart.all(user_id: current)
+
+	@cart.each do |item| 
+
+		event = Event.first(id: item.event_id)
+		event.avai_tickets = event.avai_tickets - item.tickets_purchasing 
+		event.save 
+		
+		item.destroy  
+
 	end 
 
 end 
