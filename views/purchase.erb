@@ -9,7 +9,6 @@ h2.right {
     width: 300px;
     padding: 10px;
   }
-
 h3.one {
   border-style: solid;
   border-width: 3px;
@@ -24,6 +23,12 @@ border: 0 none;
 margin-top: 20px;
 margin-bottom:20px;
 }
+p.zero {
+  font-size: 100%;
+  padding: 20px;
+  margin: 20px;
+}
+
 
 </style>
 </head>
@@ -32,6 +37,8 @@ margin-bottom:20px;
 <br>
 <br>
 <br>
+
+<form action="/payment?event=<%=(@event.id).to_i%>" method="POST">
 
 <div class="jumbotron">
 <div class="container">
@@ -46,16 +53,23 @@ margin-bottom:20px;
     <center><h2 align="justify" class="right"><%= @event.event_name%> </h2></center>
     <br>
     <hr>
-    <br>
-    <center><p align="justify">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<%= @event.event_description%> </p></center>
-    <br>
+    <p align="center" class="zero"><%= @event.event_description%> </p>
     <center><h3 class="one" align="justify">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<%= @event.event_date%> </h3></center>
     <br>
-    <center><h3 align="justify">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;$<%= @event.event_price%> </h3></center>
+    <center><h3 align="justify" style="padding: 0px; ">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;$<%= @event.event_price%> </h3></center>
+    <br> 
 
+    <div class="container">
 
+      <input type="number" name ="tickets_purchasing" placeholder="Tickets Purchasing" class="form-control" style="width: 180px;height: 0px; padding: 20px; margin-left: 70px; " required>
+      <br> 
+      <button type="submit" name="" class="btn btn-primary" style="margin-left: 67px;">Purchase</button>
+
+    </div>
 
 
 </div>
 </div> <!--Container-->
 </div> <!--Jumbotron-->
+
+</form>

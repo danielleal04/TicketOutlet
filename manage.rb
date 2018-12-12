@@ -32,6 +32,9 @@ end
 
 post "/create_event" do 
 
+	authenticate!
+	administrate! 
+
 	new_event = Event.new 
 
 	new_event.event_name = params[:event_name].to_s
@@ -59,13 +62,48 @@ get "/purchase" do
 
 	erb :purchase
 
-# make a post request to charge in purchase  
+end 
+
+post '/payment' do 
+
+	authenticate! 
+
+	@event = Event.first(id: params[:event])
+
+	if params[:tickets_purchasing].to_i > @event.avai_tickets 
+
+		flash[:error] = "Event Tickets Unavailable"
+		redirect "/events"
+
+	end 
+
+	cart = Cart.new 
+	cart.tickets_purchasing = params[:tickets_purchasing]
+	cart.name = @event.event_name
+	cart.event_id = @event.id 
+	cart.cost  = ( (@event.event_price.to_f * params[:tickets_purchasing].to_f).to_f ).round(2) 
+	cart.display_total = ( cart.cost * 100 ).round(2) 
+	cart.save 
+
+	redirect '/cart'
+
+end 
+
+get '/cart' do 
+
+	authenticate! 
+
+	@cart = Cart.all
+	@total = add_all_cart(false)
+	@display_total = add_all_cart(true)
+
+	erb :total
 
 end 
 
 post '/charge' do
   # Amount in cents
-  @amount = 500 
+  @amount = add_all_cart(true)
 
   customer = Stripe::Customer.create(
     :email => 'customer@example.com',
@@ -79,9 +117,31 @@ post '/charge' do
     :customer    => customer.id
   )
 
+
   erb :charge #successful 
 
-  current_user.pro = true 
-  current_user.save 
+  # deduct tickets purchased with total tickets available 
+  # empty cart 
 
 end
+
+def add_all_cart (display) 
+
+	@cart = Cart.all
+	@total = 0.00
+	@display_total = 0.00
+
+	@cart.each do |item| 
+
+		@total += item.cost 
+		@display_total += item.display_total 
+
+	end 
+
+	if display 
+		return @display_total 
+	else 
+		return @total
+	end 
+
+end 
