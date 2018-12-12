@@ -15,9 +15,6 @@
               <h4 class="card-title"> <%= event.event_name%> </h4>
               <p class="card-text" > <%= event.event_date%> </p>
               <p class="card-text"> $<%= event.event_price%> </p>
-
-<p class="card-text"> $<%= event.avai_tickets%> </p>
-
               <a href="/purchase?event=<%=(event.id).to_i%>" class="btn btn-primary">Purchase</a>
             </div><!--Change 1 to <%event.id%>-->
           </div>
