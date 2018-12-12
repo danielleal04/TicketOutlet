@@ -80,20 +80,22 @@ post '/payment' do
 	cart = Cart.new 
 	cart.tickets_purchasing = params[:tickets_purchasing]
 	cart.name = @event.event_name
-	cart.event_id = @event.id 
+	cart.user_id = (current_user.id) 
+	cart.event_id = @event.id.to_i
 	cart.cost  = ( (@event.event_price.to_f * params[:tickets_purchasing].to_f).to_f ).round(2) 
 	cart.display_total = ( cart.cost * 100 ).round(2) 
 	cart.save 
 
-	redirect '/cart'
+	redirect "/cart"
 
 end 
 
 get '/cart' do 
 
 	authenticate! 
+	current = (current_user.id)
+	@cart = Cart.all(user_id: current)
 
-	@cart = Cart.all
 	@total = add_all_cart(false)
 	@display_total = add_all_cart(true)
 
@@ -127,7 +129,9 @@ end
 
 def add_all_cart (display) 
 
-	@cart = Cart.all
+	current = (current_user.id)
+	@cart = Cart.all(user_id: current)
+
 	@total = 0.00
 	@display_total = 0.00
 

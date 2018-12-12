@@ -46,7 +46,8 @@ class Cart
     include DataMapper::Resource
     property :id, Serial 
     property :name, String #name of the event 
-    property :event_id, Serial # uesd to delete avai tickets 
+    property :event_id, Integer # uesd to delete avai tickets
+    property :user_id, Integer #used to keep one cart per user  
     property :cost, Float #sum total of how many tickets purchased 
     property :tickets_purchasing, Integer #how many tickets they are purchasing 
     property :display_total, Float 
