@@ -65,7 +65,7 @@ end
 
 post '/charge' do
   # Amount in cents
-  @amount = 500
+  @amount = 500 
 
   customer = Stripe::Customer.create(
     :email => 'customer@example.com',
