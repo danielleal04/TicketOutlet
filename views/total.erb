@@ -1,13 +1,21 @@
  <form action="/charge" method="post" class="payment">
     <article>
       <label class="amount">
-        <span>Amount: $5.00</span>
+        <br><br><br>
+
+        <% @cart.each do |item| %>
+        <span><%= item.name%> - <%= item.tickets_purchasing%> = <%= item.cost%> </span>
+        <br>
+        <%end %>
+
+        <span>Amount: <%= @total%></span>
+
       </label>
     </article>
 
     <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
             data-key="<%= settings.publishable_key %>"
-            data-description="A month's subscription"
-            data-amount="500"
+            data-description="Pay Now"
+            data-amount= "<%= @display_total%>" 
             data-locale="auto"></script>
   </form>

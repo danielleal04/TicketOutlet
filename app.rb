@@ -20,21 +20,10 @@ end
 
 get "/home" do
 
-	#add event code here 
- ###
- ###
- ###
- ###
- ###
- ###
- ###
- ###
- ###
- ###
- ###
- ### and to index 
+	@event = Event.all 
 
 	erb :index
+
 end
 
 get "/contact" do

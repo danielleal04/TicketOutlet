@@ -35,10 +35,8 @@ class Event
     property :event_description, String # short description of event 
     property :event_date, String #format 'month/day/year' ex:'november/27/2018'
     property :event_price, Float #price of each ticket 
-    property :tickets_purchasing, Integer #how many tickets they are purchasing 
     property :avai_tickets, Integer #how many available tickets
     property :image_name, String # name of image to display  
-    property :event_link, String # link to purchase event 
     #need to add an image of an event 
     #images availabel in public file    
 end
@@ -48,8 +46,11 @@ class Cart
     include DataMapper::Resource
     property :id, Serial 
     property :name, String #name of the event 
+    property :event_id, Integer # uesd to delete avai tickets
+    property :user_id, Integer #used to keep one cart per user  
     property :cost, Float #sum total of how many tickets purchased 
-    property :quantity, Integer # how many tickets purchased 
+    property :tickets_purchasing, Integer #how many tickets they are purchasing 
+    property :display_total, Float 
     
 end
 ### WORK IN PROGRESS ###
