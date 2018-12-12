@@ -8,16 +8,15 @@
 <div class="card-columns">
 
   <% @event.each do |event| %>
-      
+
         <div class="card h-100">
             <img class="card-img-top" src= "<%= event.image_name%>" alt="Card image" height="200" width="200">
             <div class="card-body">
               <h4 class="card-title"> <%= event.event_name%> </h4>
-              <p class="card-text"> <%= event.event_description%> </p>
               <p class="card-text" > <%= event.event_date%> </p>
               <p class="card-text"> $<%= event.event_price%> </p>
               <a href="/purchase?event=<%=(event.id).to_i%>" class="btn btn-primary">Purchase</a>
-            </div><!--Change 1 to <%event.id%>-->      
+            </div><!--Change 1 to <%event.id%>-->
           </div>
 
   <% end %>
