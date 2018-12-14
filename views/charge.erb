@@ -11,6 +11,13 @@ p.two {
   color:black;
 }
 
+p.one {
+  display: inline-block;
+  font-size: 100%;
+  padding: 1px;
+  margin: 0px;
+  color:black;
+}
 
 </style>
 </head>
@@ -28,13 +35,16 @@ p.two {
 	<br>  
 	<p> Transaction Receipt </p>
 	<br>
+
 	<% @cart.each do |item| %>
-		<p> <%= item.name %> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <%= item.tickets_purchasing.to_s %> </p> 
+		<p class="one" style="position: absolute;"> <%= item.name %> </p> 
+		<p class="one" style="margin-left: 250px; position: absolute;"> <%= item.tickets_purchasing.to_s %> </p> 
+		<br> 
 		<%item.destroy%>    
 	<% end %>
 	<hr> 
 
-	<p> Total: <%= @amount %> </p> 
+	<p> Total: <%= @total.round(2) %> </p> 
 
 	<br> 
 	<br> 

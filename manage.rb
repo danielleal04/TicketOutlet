@@ -109,6 +109,7 @@ post '/charge' do
 
   clear_events()
 
+  @total = add_all_cart(false)
   @amount = (add_all_cart(false) * 100).round 
 
   customer = Stripe::Customer.create( 
