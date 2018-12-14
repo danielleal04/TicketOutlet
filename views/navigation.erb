@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 
 
-  <a href="http://localhost:4567/home"><img src="/ticketoutletlogo.png/" width = "100" height = "70" /></a>
+  <a href="/home"><img src="/ticketoutletlogo.png/" width = "100" height = "70" /></a>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -16,12 +16,12 @@
       </li>
 
       <% if current_user %>
-            <% if current_user.admin %> 
+            <% if current_user.admin %>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="/add_event">Create Event</a>
                     </li>
-            <% end %> 
+            <% end %>
         <li class="nav-item">
           <a class="nav-link" href="/events">Events</a>
         </li>
