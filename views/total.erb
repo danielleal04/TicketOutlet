@@ -1,21 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+p.one {
+  display: inline-block;
+  font-size: 150%;
+  padding: 1px;
+  margin: 0px;
+  color:black;
+}
+
+p.two {
+  display: inline-block;
+  font-size: 300%;
+  padding: 0px;
+  margin: 0px;
+  color:black;
+}
+
+
+</style>
+</head>
+<body>
+
  <form action="/charge" method="post" class="payment">
-    <article>
-      <label class="amount">
+
         <br><br><br>
 
-        <% @cart.each do |item| %>
-        <span><%= item.name%> - <%= item.tickets_purchasing%> = <%= item.cost%> </span>
-        <br>
-        <%end %>
+        <div class="container">
 
-        <span>Amount: <%= @total%></span>
+            <p class="two"> Item </p>
+            <p class="two" style="margin-left: 100px;"> Amount </p>
+            <br> 
+            <hr> 
+            <br>
 
-      </label>
-    </article>
+            <% @cart.each do |item| %>
+
+                <p class="one" style="position: absolute;">  <%= item.name%>  </p>
+                <p class="one" style="margin-left: 250px; position: absolute;"  >  <%= item.tickets_purchasing.to_s%>  </p>
+
+                <br> 
+
+            <%end %>
+
+            <br> 
+            <hr>
+            <br> 
+
+            <p class="one"> Total: <%= @total%> </p>
+
+            <br>
+            <br>
+            <br> 
+
+        </div>
 
     <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
             data-key="<%= settings.publishable_key %>"
             data-description="Pay Now"
             data-amount= "<%= @display_total%>" 
             data-locale="auto"></script>
+
+    <script>
+            document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
+        </script> 
+
+        <button type="submit" class="btn btn-primary"> Pay Now </button>
+
+            <br>
+            <br> 
+            <br> 
   </form>
