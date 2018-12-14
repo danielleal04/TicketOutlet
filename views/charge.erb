@@ -1,2 +1,49 @@
-<br> <br> <br> <br> <br> 
-<p>charge successfull <%= @amount.to_s%> </p> 
+<!DOCTYPE html>
+<html>
+<head> 
+<style>
+
+
+p.two {
+  font-size: 300%;
+  padding: 0px;
+  margin: 0px;
+  color:black;
+}
+
+
+</style>
+</head>
+<body>
+
+<br> <br> <br> 
+
+<div class = "container">
+
+	<p class="two" > Charge Successful </p>
+	<hr> 
+
+	<p> A message was sent to <%= current_user.email.to_s%> containing more information on the event. </p>
+	<hr>
+	<br>  
+	<p> Transaction Receipt </p>
+	<br>
+	<% @cart.each do |item| %>
+		<p> <%= item.name %> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <%= item.tickets_purchasing.to_s %> </p> 
+		<%item.destroy%>    
+	<% end %>
+	<hr> 
+
+	<p> Total: <%= @amount %> </p> 
+
+	<br> 
+	<br> 
+	<br> 
+	<br>
+	<p> DISCLAIMER: No actual email was sent, just a prototype :) </p> 
+
+	<br> 
+
+</div>
+
+ 

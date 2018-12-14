@@ -15,7 +15,7 @@ require 'stripe'
 
 get "/events" do
 
-	@event = Event.all 
+	@event = Event.all  
 
     erb :events
 
@@ -106,9 +106,12 @@ end
 
 post '/charge' do
   # Amount in cents
+
+  clear_events()
+
   @amount = (add_all_cart(false) * 100).round 
 
-  customer = Stripe::Customer.create(
+  customer = Stripe::Customer.create( 
     :email => 'customer@example.com',
     :source  => params[:stripeToken]
   )
@@ -120,8 +123,11 @@ post '/charge' do
     :customer    => customer.id
   )
 
-  clear_events()
-  erb :charge #successful 
+
+  erb :charge # successful
+
+  #clear_cart() 
+  #Cart.delete_all(user_id: current_user) 
 
 end
 
@@ -156,10 +162,18 @@ def clear_events ()
 	@cart.each do |item| 
 
 		event = Event.first(id: item.event_id)
-		event.avai_tickets = event.avai_tickets - item.tickets_purchasing 
-		event.save 
+
+		if (item.tickets_purchasing.to_i > event.avai_tickets) 
+
+			flash[:error] = event.event_name.to_s + " Event " + item.tickets_purchasing.to_s + " Tickets Unavailable"
+			item.destroy 
+
+		else 
+
+			event.avai_tickets = event.avai_tickets - item.tickets_purchasing 
+			event.save 
 		
-		item.destroy  
+		end   
 
 	end 
 
